@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ namespace SpatialPartition
             Vector2Int.down + Vector2Int.left
         };
 
-        private Dictionary<Vector2Int, HashSet<T>> _grid = default;
+        private Dictionary<Vector2Int, HashSet<T>> _grid = new();
 
         ///<summary>
         /// Svuoto gli elementi della griglia senza distruggerli
@@ -53,7 +52,7 @@ namespace SpatialPartition
         ///</summary>
         ///<param name = "position"> Posizione da prendere in considerazione </param>
         ///<param name = "result"> Set dove inserire gli elemnti trovati </param>
-        public void GetNeighbours(Vector2Int position, HashSet<T> result, bool additive)
+        public void GetNeighbours(Vector2Int position, HashSet<T> result)
         {
             result.Clear();
             foreach (Vector2Int offset in _neighbourOffsets)
@@ -71,11 +70,20 @@ namespace SpatialPartition
         {
             if (!_grid.TryGetValue(position, out HashSet<T> hashSet))
             {
-                hashSet = default;
+                hashSet = new();
                 _grid[position] = hashSet;
             }
 
             hashSet.Add(value);
+        }
+
+        ///<summary>
+        ///
+        ///</summary>
+        public static Vector2Int ToGridPosition(Vector3 position, float cellSize)
+        {
+            var pos = new Vector2(position.x, position.z) / cellSize;
+            return Vector2Int.RoundToInt(pos);
         }
     }
 }
