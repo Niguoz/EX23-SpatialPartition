@@ -45,15 +45,15 @@ namespace SpatialPartition
                 _grid.Add(gridPosition, element);
             }
 
-            if (Input.GetButtonDown("Fire1"))
-            {
+            ///if (Input.GetButtonDown("Fire1"))
+            ///{
                 UpdateNeighbours();
-            }
+            //}
 
-            if (Input.GetButtonDown("Fire2"))
-            {
-                ShowAll();
-            }
+            //if (Input.GetButtonDown("Fire2"))
+           // {
+            //    ShowAll();
+            //}
         }
 
         void ShowAll()

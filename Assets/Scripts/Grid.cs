@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace SpatialPartition
 {
@@ -18,8 +19,10 @@ namespace SpatialPartition
             Vector2Int.down + Vector2Int.left
         };
 
+        public Vector2Int[] Offsets => _neighbourOffsets;
         private Dictionary<Vector2Int, HashSet<T>> _grid = new();
 
+        public Vector2Int[] Keys => _grid.Keys.ToArray();
         ///<summary>
         /// Svuoto gli elementi della griglia senza distruggerli
         ///</summary>
@@ -36,7 +39,7 @@ namespace SpatialPartition
         ///</summary>
         ///<param name = "position"> Posizione da prendere in considerazione </param>
         ///<param name = "result"> Set dove inserire gli elemnti trovati </param>
-        private void AddElementAtPosition(Vector2Int position, HashSet<T> result)
+        public void AddElementAtPosition(Vector2Int position, HashSet<T> result)
         {
 
             if (!_grid.TryGetValue(position, out HashSet<T> hashSet)) return;
