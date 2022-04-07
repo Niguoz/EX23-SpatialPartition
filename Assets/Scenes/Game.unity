@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 454054768}
-  refreshTime: 0
+  refreshTime: 0.001
   checkDistance: 30
 --- !u!1 &1810857601
 GameObject:
